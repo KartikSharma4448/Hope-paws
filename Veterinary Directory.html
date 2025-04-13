@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaipur Veterinary Directory - HopePaws</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #e0f7fa, #fffde7);
+            color: #333;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 10%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(224, 247, 250, 0.8));
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #004d40;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .side-menu a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .side-menu a:hover {
+            color: #f1f1f1;
+        }
+
+        .side-menu .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- Hamburger Menu -->
+    <span class="menu-icon" onclick="openNav()">
+        <i class="fas fa-bars"></i>
+    </span>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="Report Emergency.html">Report Emergency</a>
+        <a href="Veterinary Directory.html">Veterinary Directory</a>
+        <a href="AboutUs.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="donate.html">Donate</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-text"><img src="image\logo.png" alt="HopePaws Logo" class="logo" width="75">
+            <h1>Jaipur Veterinary Directory</h1>
+            <p>Find veterinary clinics, shelters, and rescue teams in Jaipur for immediate help.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mapModal" onclick="showMap('26.9124,75.7873')">See in Map</button>
+        </div>
+    </div>
+
+    <!-- Directory Section -->
+    <div class="container mt-5">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="clinics-tab" data-bs-toggle="tab" data-bs-target="#clinics" type="button" role="tab">Veterinary Clinics</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="shelters-tab" data-bs-toggle="tab" data-bs-target="#shelters" type="button" role="tab">Shelters</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="rescue-tab" data-bs-toggle="tab" data-bs-target="#rescue" type="button" role="tab">Rescue Teams</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="clinics" role="tabpanel" aria-labelledby="clinics-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Organization</th>
+                            <th>Location</th>
+                            <th>Contact</th>
+                            <th>Hours of Operation</th>
+                            <th>View on Map</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jaipur Animal Hospital</td>
+                            <td>123 Dog Lane, Jaipur</td>
+                            <td>(141) 123-4567</td>
+                            <td>Mon-Sun, 10AM - 8PM</td>
+                            <td><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#mapModal" onclick="showMap('26.9124,75.7873')">View Map</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="shelters" role="tabpanel" aria-labelledby="shelters-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Organization</th>
+                            <th>Location</th>
+                            <th>Contact</th>
+                            <th>Hours of Operation</th>
+                            <th>View on Map</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Happy Paws Shelter</td>
+                            <td>456 Cat Street, Jaipur</td>
+                            <td>(141) 987-6543</td>
+                            <td>Mon-Sat, 9AM - 6PM</td>
+                            <td><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#mapModal" onclick="showMap('26.9239,75.7892')">View Map</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="rescue" role="tabpanel" aria-labelledby="rescue-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Organization</th>
+                            <th>Location</th>
+                            <th>Contact</th>
+                            <th>Hours of Operation</th>
+                            <th>View on Map</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Animal Care Rescue</td>
+                            <td>789 Pet Avenue, Jaipur</td>
+                            <td>(141) 555-1234</td>
+                            <td>24/7</td>
+                            <td><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#mapModal" onclick="showMap('26.9162,75.8200')">View Map</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Map Modal -->
+    <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mapModalLabel">Google Map</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="mapIframe" src="" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("sideMenu").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sideMenu").style.width = "0";
+        }
+
+        function showMap(coordinates) {
+            const mapIframe = document.getElementById("mapIframe");
+            mapIframe.src = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${coordinates}`;
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

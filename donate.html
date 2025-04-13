@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - HopePaws</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #f3f4f6, #ffffff);
+            color: #333;
+        }
+        .donate-header {
+            text-align: center;
+            padding: 50px 20px;
+            background: #00796b;
+            color: #fff;
+        }
+        .donate-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .donate-header p {
+            font-size: 1.2rem;
+        }
+        .donate-instructions {
+            padding: 30px 20px;
+            text-align: center;
+            background: #e0f2f1;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        .donate-form {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .donate-form .btn {
+            background-color: #00796b;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .donate-form .btn:hover {
+            background-color: #004d40;
+        }
+        .footer {
+            background-color: #004d40;
+            color: #fff;
+            padding: 20px 10%;
+            text-align: center;
+        }
+        .footer a {
+            color: #b2dfdb;
+            text-decoration: none;
+        }
+
+        /* Side Menu */
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background-color: #00796b;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .side-menu a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .side-menu a:hover {
+            color: #f1f1f1;
+        }
+        .side-menu .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        /* Hamburger Icon */
+        .menu-icon {
+            font-size: 30px;
+            color: #00796b;
+            cursor: pointer;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hamburger Menu -->
+    <span class="menu-icon" onclick="openNav()">
+        <i class="fas fa-bars"></i>
+    </span>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="Report Emergency.html">Report Emergency</a>
+        <a href="Veterinary Directory.html">Veterinary Directory</a>
+        <a href="AboutUs.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="donate.html">Donate</a>
+    </div>
+
+    <!-- Donate Header -->
+    <div class="donate-header">
+        <img src="image/logo.png" alt="HopePaws Logo" class="logo" width="100">
+        <h1>Make a Donation</h1>
+        <p>Your support helps us save and care for stray animals.</p>
+    </div>
+
+    <!-- Donation Instructions -->
+    <div class="donate-instructions ">
+        <h2>How to Donate</h2>
+        <p>Please make your donation using the following UPI ID:</p>
+        <h3>upi@example.com</h3>
+        <p>After making the payment, please fill out the form below to confirm your donation.</p>
+    </div>
+
+    <!-- Donate Form -->
+    <div class="donate-form">
+        <form action="submit_donation.php" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="transaction_number" class="form-label">Transaction Number</label>
+                <input type="text" class="form-control" id="transaction_number" name="transaction_number" required>
+            </div>
+            <div class="mb-3">
+                <label for="Mobile_Number" class="form-label">Mobile Number</label>
+                <input type="text" class="form-control" id="Mobile_Number" name="Mobile_Number" required>
+            </div>
+            <div class="mb-3">
+                <label for="Amount" class="form-label">Amount</label>
+                <input type="text" class="form-control" id="Amount" name="Amount" required>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2023 HopePaws. All rights reserved.</p>
+        <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("sideMenu").style.width = "250px";
+        }
+        function closeNav() {
+            document.getElementById("sideMenu").style.width = "0";
+        }
+    </script>
+</body>
+</html>

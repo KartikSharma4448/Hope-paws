@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HopePaws - Emergency Helpline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #e0f7fa, #fffde7);
+            color: #333;
+        }
+
+        /* Side Menu */
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background-color: #00796b;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .side-menu a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .side-menu a:hover {
+            color: #f1f1f1;
+        }
+        .side-menu .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        /* Hamburger Icon */
+        .menu-icon {
+            font-size: 30px;
+            color: #00796b;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 10%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(224, 247, 250, 0.8));
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .hero-text {
+            max-width: 50%;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .hero-text .btn {
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 25px;
+        }
+        .hero-text .btn-primary {
+            background-color: #00796b;
+            border: none;
+        }
+        .hero-text .btn-outline-secondary {
+            border-color: #00796b;
+            color: #00796b;
+        }
+        .hero-img img, .carousel-item img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .carousel {
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .features, .about {
+            text-align: center;
+            padding: 50px 10%;
+        }
+        .features h2, .about h2 {
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+        .features p, .about p {
+            color: #555;
+        }
+        .footer {
+            background-color: #004d40;
+            color: #fff;
+            padding: 20px 10%;
+            text-align: center;
+        }
+        .footer a {
+            color: #b2dfdb;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+            .carousel {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hamburger Menu -->
+    <span class="menu-icon" onclick="openNav()">
+        <i class="fas fa-bars"></i>
+    </span>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="Report Emergency.html">Report Emergency</a>
+        <a href="Veterinary Directory.html">Veterinary Directory</a>
+        <a href="AboutUs.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="donate.html">Donate</a>
+    </div>
+
+ <!-- Hero Section -->
+ <div class="hero">
+    <img src="image\logo.png" alt="HopePaws Logo" class="logo"> <!-- Add your logo here -->
+    <div class="hero-text">
+        <h1>HopePaws</h1>
+        <p>Report emergencies, find help, and make a difference in the lives of stray animals.</p>
+        <a href="contact.html" class="btn btn-primary">Contact Us!</a>
+        <a href="Report Emergency.html" class="btn btn-outline-secondary">Report an Emergency</a>
+    </div>
+    <div class="carousel slide" id="photoCarousel" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="image/dog.jpg" alt="Stray Dog">
+            </div>
+            <div class="carousel-item">
+                <img src="image/cat.jpg" alt="Stray Cat">
+            </div>
+            <div class="carousel-item">
+                <img src="image/cow.jpg" class="d-block w-100" alt="Stray cow">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+   <!-- Features Section -->
+<div class="features">
+    <h2>Our Features</h2>
+    <p>Quickly report emergencies, find veterinary help, and track rescue efforts with ease.</p>
+    <div class="d-flex justify-content-center">
+        <a href="Veterinary Directory.html" class="btn btn-primary mx-2 d-flex align-items-center">
+            <i class="fas fa-list-alt me-2"></i> Veterinary Directory
+        </a>
+        <a href="donate.html" class="btn btn-primary mx-2 d-flex align-items-center">
+            <i class="fas fa-heart me-2"></i> Donate
+        </a>
+        <a href="AboutUs.html" class="btn btn-primary mx-2 d-flex align-items-center">
+            <i class="fas fa-info-circle me-2"></i> About Us
+        </a>
+    </div>
+</div>
+
+    <!-- About Us Section -->
+    <div class="about">
+        <h2>About Us</h2>
+        <p>The HopePaws Emergency Helpline is dedicated to ensuring the safety and well-being of stray animals. We connect individuals with rescue teams, veterinary clinics, and shelters to provide timely assistance.</p>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2024 HopePaws. All Rights Reserved.</p>
+        <p>
+            Contact us: <a href="mailto:help@HopePaws.com">help@HopePaws.com</a> | 
+            <a href="#">Privacy Policy</a>
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Open the side menu
+        function openNav() {
+            document.getElementById("sideMenu").style.width = "250px";
+        }
+
+        // Close the side menu
+        function closeNav() {
+            document.getElementById("sideMenu").style.width = "0";
+        }
+    </script>
+</body>
+</html>

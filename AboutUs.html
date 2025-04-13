@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HopePaws</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #e0f7fa, #fffde7);
+            color: #333;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            margin: 10px 20px;
+            color: #004d40;
+            display: block;
+        }
+
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #004d40;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .side-menu a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 22px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .side-menu a:hover {
+            background-color: #00796b;
+        }
+
+        .side-menu .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: white;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            background: linear-gradient(to right, #004d40, #00695c);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+        }
+
+        .content {
+            padding: 40px 10%;
+            line-height: 1.8;
+        }
+
+        .content h2 {
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+
+        .team-section {
+            background: #f1f8e9;
+            padding: 40px 10%;
+        }
+
+        .team-section h2 {
+            color: #33691e;
+        }
+
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .team-member h4 {
+            margin: 0;
+            color: #004d40;
+        }
+
+        .team-member p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hamburger Menu -->
+    <span class="menu-icon" onclick="openNav()">
+        <i class="fas fa-bars"></i>
+    </span>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="Report Emergency.html">Report Emergency</a>
+        <a href="Veterinary Directory.html">Veterinary Directory</a>
+        <a href="AboutUs.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="donate.html">Donate</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <img src="image\logo.png" alt="HopePaws Logo" class="logo">
+        <div>
+            <h1>About Us</h1>
+            <p>We are dedicated to helping stray animals by connecting the community with resources, shelters, and veterinary services.</p>
+        </div>
+    </div>
+
+    <!-- About Us Content -->
+    <div class="content">
+        <h2>Who We Are</h2>
+        <p>HopePaws is a platform committed to improving the lives of stray animals in Jaipur. Our mission is to provide immediate care and long-term solutions through shelters, veterinary clinics, and rescue teams. We believe in the power of community and strive to connect people who share the same vision of animal welfare.</p>
+
+        <h2>Our Mission</h2>
+        <p>Our mission is to ensure that every stray animal receives the care, respect, and love it deserves. Through our platform, we aim to make it easier for people to report emergencies, find veterinary services, and support local shelters and rescue organizations.</p>
+
+        <h2>What We Offer</h2>
+        <ul>
+            <li>Easy access to veterinary clinics in Jaipur.</li>
+            <li>Information about nearby animal shelters.</li>
+            <li>Support for rescue operations and emergency situations.</li>
+            <li>Educational resources to spread awareness about animal care.</li>
+        </ul>
+    </div>
+
+    <!-- Meet the Team Section -->
+    <div class="team-section">
+        <h2>Meet Our Team</h2>
+        <div class="row">
+            <div class="col-md-3 team-member">
+                <img src="image/Kartik.jpg" alt="Kartik Sharma">
+                <h4>Kartik Sharma</h4>
+                <p>Builder & Owner</p>
+            </div>
+            <div class="col-md-3 team-member">
+                <img src="image/shobha.jpg" alt="Shobha Bhati">
+                <h4>Shobha Bhati</h4>
+                <p>Founder & Owner</p>
+            </div>
+            <div class="col-md-3 team-member">
+                <img src="image/prince.png" alt="Prince Kumar Ray">
+                <h4>Prince Kumar Ray</h4>
+                <p>Management & Owner</p>
+            </div>
+            <div class="col-md-3 team-member">
+                <img src="image/Sreshtha Chaudhuri.jpg" alt="Sreshtha Chaudhuri">
+                <h4>Sreshtha</h4>
+                <p>Forensic & Owner</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("sideMenu").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sideMenu").style.width = "0";
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

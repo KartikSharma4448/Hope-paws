@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Emergency - HopePaws</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 50px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: #004d40;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-info a {
+            text-decoration: none;
+            color: #00796b;
+        }
+
+        /* Side Menu */
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background-color: #00796b;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .side-menu a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .side-menu a:hover {
+            color: #f1f1f1;
+        }
+
+        .side-menu .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            color: #00796b;
+            cursor: pointer;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <span class="menu-icon" onclick="openNav()">
+        <i class="fas fa-bars"></i>
+    </span>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="Report Emergency.html">Report Emergency</a>
+        <a href="Veterinary Directory.html">Veterinary Directory</a>
+        <a href="AboutUs.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="donate.html">Donate</a>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <img src="image\logo.png" alt="HopePaws Logo" class="logo" width="100">
+        <h1>Report an Emergency</h1>
+        <p>Help us respond quickly to emergencies involving stray animals.</p>
+    </div>
+
+    <!-- Emergency Report Form -->
+    <div class="container">
+        <form action="send_email.php" method="POST" enctype="multipart/form-data" id="emergencyForm">
+            <!-- Name -->
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="text" id="Name" name="Name" class="form-control" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" id="Email" name="Email" class="form-control" required>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="Phone">Phone</label>
+                <input type="tel" id="Phone" name="Phone" class="form-control" required>
+            </div>
+
+            <!-- Location -->
+            <div class="form-group">
+                <label for="Location">Location</label>
+                <input type="text" id="Location" name="Location" class="form-control" required>
+            </div>
+            
+            
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="Description">Description of the Emergency</label>
+                <textarea id="Description" name="Description" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <!-- Upload Photo/Video -->
+            <div class="form-group">
+                <label for="mediaUpload">Upload Photo/Video</label>
+                <input type="file" class="form-control" id="mediaUpload" name="mediaUpload" accept="image/*,video/*">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit">Submit Report</button>
+        </form>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info">
+        <p>If you have any questions, feel free to <a href="contact.html">contact us</a>.</p>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("sideMenu").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sideMenu").style.width = "0";
+        }
+    </script>
+</body>
+</html>
