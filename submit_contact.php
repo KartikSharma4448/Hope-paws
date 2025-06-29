@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars($_POST['name']);
     $email = htmlspecialchars($_POST['email']);
     $number = htmlspecialchars($_POST['number']);
+
     $message = htmlspecialchars($_POST['message']);
 
     $mail = new PHPMailer(true);
@@ -20,8 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
+        $mail->SMTPDebug = 0; // Detailed SMTP debug output
+
         $mail->Username = 'kartikuma9261@gmail.com'; // Your Gmail address
-        $mail->Password = 'rbjx njxx hkks gdud'; // Your Gmail App Password
+        $mail->Password = 'nass litu tusc pekp'; // Your Gmail App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
@@ -33,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Subject = "New Emergency Report from $name";
         $mail->Body = "
             <h3>Emergency Report Details:</h3>
-            <p><strong>name:</strong> $name</p>
-            <p><strong>Email:</strong> $email</p>
-            <p><strong>Phone:</strong> $number</p>
-            <p><strong>Message:</strong> $message</p>
+            <p><strong>Name:</strong> $name</p>
+            <p><strong>email:</strong> $email</p>
+            <p><strong>number:</strong> $number</p>
+            <p><strong>message:</strong> $message</p>
         ";
        
         $mail->send();

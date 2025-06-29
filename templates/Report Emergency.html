@@ -98,6 +98,54 @@
             cursor: pointer;
             margin: 20px;
         }
+
+        /* Add loading animation styles */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #00796b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 10000;
+            text-align: center;
+        }
+
+        .success-message i {
+            color: #00796b;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -109,24 +157,24 @@
     <!-- Side Menu -->
     <div id="sideMenu" class="side-menu">
         <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
-        <a href="index.html">Home</a>
-        <a href="Report Emergency.html">Report Emergency</a>
-        <a href="Veterinary Directory.html">Veterinary Directory</a>
-        <a href="AboutUs.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="donate.html">Donate</a>
+        <a href="/">Home</a>
+        <a href="/report-emergency">Report Emergency</a>
+        <a href="/veterinary-directory">Veterinary Directory</a>
+        <a href="/about-us">About Us</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/donate">Donate</a>
     </div>
 
     <!-- Page Header -->
     <div class="page-header">
-        <img src="image\logo.png" alt="HopePaws Logo" class="logo" width="100">
+        <img src="/static/image/logo.png" alt="HopePaws Logo" class="logo" width="100">
         <h1>Report an Emergency</h1>
         <p>Help us respond quickly to emergencies involving stray animals.</p>
     </div>
 
     <!-- Emergency Report Form -->
     <div class="container">
-        <form action="send_email.php" method="POST" enctype="multipart/form-data" id="emergencyForm">
+        <form action="/report_emergency" method="post" enctype="multipart/form-data" id="emergencyForm">
             <!-- Name -->
             <div class="form-group">
                 <label for="Name">Name</label>
@@ -172,7 +220,20 @@
 
     <!-- Contact Information -->
     <div class="contact-info">
-        <p>If you have any questions, feel free to <a href="contact.html">contact us</a>.</p>
+        <p>If you have any questions, feel free to <a href="/contact">contact us</a>.</p>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <h3>Emergency Reported Successfully!</h3>
+        <p>Thank you for reporting the emergency. Our team will respond as soon as possible.</p>
+        <button class="btn btn-primary" onclick="hideSuccessMessage()">OK</button>
     </div>
 
     <script>
@@ -183,6 +244,57 @@
         function closeNav() {
             document.getElementById("sideMenu").style.width = "0";
         }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+
+        function showSuccessMessage() {
+            document.getElementById('successMessage').style.display = 'block';
+        }
+
+        function hideSuccessMessage() {
+            document.getElementById('successMessage').style.display = 'none';
+            window.location.href = '/'; // Redirect to home page
+        }
+
+        // Handle form submission
+        document.getElementById('emergencyForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            showLoading();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/report-emergency', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    hideLoading();
+                    showSuccessMessage();
+                    this.reset();
+                } else {
+                    throw new Error(result.error || 'Failed to submit emergency report');
+                }
+            } catch (error) {
+                hideLoading();
+                alert(error.message || 'An error occurred. Please try again later.');
+                console.error('Error:', error);
+            }
+        });
     </script>
 </body>
 </html>

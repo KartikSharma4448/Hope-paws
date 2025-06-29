@@ -101,6 +101,54 @@
             cursor: pointer;
             margin: 20px;
         }
+
+        /* Add loading animation styles */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #00796b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 10000;
+            text-align: center;
+        }
+
+        .success-message i {
+            color: #00796b;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -113,17 +161,17 @@
     <!-- Side Menu -->
     <div id="sideMenu" class="side-menu">
         <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
-        <a href="index.html">Home</a>
-        <a href="Report Emergency.html">Report Emergency</a>
-        <a href="Veterinary Directory.html">Veterinary Directory</a>
-        <a href="AboutUs.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="donate.html">Donate</a>
+        <a href="/">Home</a>
+        <a href="/report-emergency">Report Emergency</a>
+        <a href="/veterinary-directory">Veterinary Directory</a>
+        <a href="/about-us">About Us</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/donate">Donate</a>
     </div>
 
     <!-- Donate Header -->
     <div class="donate-header">
-        <img src="image/logo.png" alt="HopePaws Logo" class="logo" width="100">
+        <img src="/static/image/logo.png" alt="HopePaws Logo" class="logo" width="100">
         <h1>Make a Donation</h1>
         <p>Your support helps us save and care for stray animals.</p>
     </div>
@@ -132,13 +180,13 @@
     <div class="donate-instructions ">
         <h2>How to Donate</h2>
         <p>Please make your donation using the following UPI ID:</p>
-        <h3>upi@example.com</h3>
+        <h3>hopepaws@ybl</h3>
         <p>After making the payment, please fill out the form below to confirm your donation.</p>
     </div>
 
     <!-- Donate Form -->
     <div class="donate-form">
-        <form action="submit_donation.php" method="post">
+        <form action="/submit_donation" method="post" id="donationForm">
             <div class="mb-3">
                 <label for="name" class="form-label">Your Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -162,7 +210,20 @@
     <!-- Footer -->
     <div class="footer">
         <p>&copy; 2023 HopePaws. All rights reserved.</p>
-        <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+        <a href="/templates/privacy.html">Privacy Policy</a> | <a href="/templates/terms.html">Terms of Service</a>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <h3>Donation Submitted Successfully!</h3>
+        <p>Thank you for your generous donation. We will process your payment shortly.</p>
+        <button class="btn btn-primary" onclick="hideSuccessMessage()">OK</button>
     </div>
 
     <script>
@@ -172,6 +233,57 @@
         function closeNav() {
             document.getElementById("sideMenu").style.width = "0";
         }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+
+        function showSuccessMessage() {
+            document.getElementById('successMessage').style.display = 'block';
+        }
+
+        function hideSuccessMessage() {
+            document.getElementById('successMessage').style.display = 'none';
+            window.location.href = '/'; // Redirect to home page
+        }
+
+        // Handle form submission
+        document.getElementById('donationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            showLoading();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/donate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    hideLoading();
+                    showSuccessMessage();
+                    this.reset();
+                } else {
+                    throw new Error(result.error || 'Failed to process donation');
+                }
+            } catch (error) {
+                hideLoading();
+                alert(error.message || 'An error occurred. Please try again later.');
+                console.error('Error:', error);
+            }
+        });
     </script>
 </body>
 </html>
